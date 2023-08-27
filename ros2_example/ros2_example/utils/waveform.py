@@ -16,7 +16,7 @@ class SineWave:
         """
         self._AMP = amp
         self._OFS = ofs
-        self._GAIN = 2 * np.pi * frq
+        self._OMEGA = 2 * np.pi * frq  # 角速度ω[rad/s]
 
     def get_value(self, elapsed_time: float) -> float:
         """
@@ -24,4 +24,4 @@ class SineWave:
 
         :param elapsed_time: 経過時間[秒]
         """
-        return self._AMP * np.sin(self._GAIN * elapsed_time) + self._OFS
+        return self._AMP * np.sin(self._OMEGA * elapsed_time) + self._OFS

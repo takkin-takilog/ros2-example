@@ -54,7 +54,7 @@ qtcreator-*
 CATKIN_IGNORE
 
 # Mypy cache files
-/.mypy_cache/
+*/.gitignore
 
 # shell
 *.sh
