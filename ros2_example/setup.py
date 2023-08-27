@@ -21,6 +21,8 @@ setup(
         "console_scripts": [
             "simple_pricing_publisher = ros2_example.topics.simple_pricing_publisher:main",
             "simple_pricing_subscriber = ros2_example.topics.simple_pricing_subscriber:main",
+            "custom_pricing_publisher = ros2_example.topics.custom_pricing_publisher:main",
+            "custom_pricing_subscriber = ros2_example.topics.custom_pricing_subscriber:main",
         ],
     },
 )

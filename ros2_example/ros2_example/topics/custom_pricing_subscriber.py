@@ -2,48 +2,50 @@ import rclpy
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, QoSHistoryPolicy, QoSReliabilityPolicy
-from std_msgs.msg import Float32
+from ros2_example_msgs.msg import CustomPricing
 
 
-class SimplePricingSubscriber(Node):
+class CustomPricingSubscriber(Node):
     """
-    シンプル為替レートトピックSubscriberノード
+    独自型為替レートトピックSubscriberノード
     """
 
     def __init__(self) -> None:
         """
         ノードの初期化
         """
-        super().__init__("simple_pricing_subscriber")
+        super().__init__("custom_pricing_subscriber")
 
         qos_profile = QoSProfile(
             history=QoSHistoryPolicy.KEEP_ALL, reliability=QoSReliabilityPolicy.RELIABLE
         )
 
-        # Float32型のsimple_pricingトピックを受信するsubscriptionの定義
+        # 独自型のcustom_pricingトピックを受信するsubscriptionの定義
         # （listener_callbackは受信毎に呼び出されるコールバック関数）
         self.sub = self.create_subscription(
-            Float32, "simple_pricing", self._listener_callback, qos_profile
+            CustomPricing, "custom_pricing", self._listener_callback, qos_profile
         )
 
-    def _listener_callback(self, msg: Float32) -> None:
+    def _listener_callback(self, msg: CustomPricing) -> None:
         """
         subscriptionコールバック
         """
         # 受信msgの中身をログ出力
-        self.get_logger().info("＜受信＞現在レート:{:.3f}".format(msg.data))
+        self.get_logger().info(
+            "＜受信＞現在レート:Ask={:.3f}, Bid={:.3f}".format(msg.ask, msg.bid)
+        )
 
 
 def main(args: list[str] | None = None) -> None:
     # Pythonクライアントライブラリの初期化
     rclpy.init(args=args)
-    # simple_pricing_subscriberノードの作成
-    sps = SimplePricingSubscriber()
-    sps.get_logger().info("simple_pricing_subscriber start!")
+    # custom_pricing_subscriberノードの作成
+    cps = CustomPricingSubscriber()
+    cps.get_logger().info("custom_pricing_subscriber start!")
 
     try:
         # ノードの実行開始
-        rclpy.spin(sps)
+        rclpy.spin(cps)
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
     else:
@@ -51,4 +53,4 @@ def main(args: list[str] | None = None) -> None:
         rclpy.shutdown()
     finally:
         # ノードの破棄
-        sps.destroy_node()
+        cps.destroy_node()

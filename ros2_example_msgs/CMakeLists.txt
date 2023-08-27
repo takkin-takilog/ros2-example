@@ -28,7 +28,7 @@ endif()
 
 set(msg_files
   # "msg/***.msg"
-  "msg/AskBidPricing.msg"
+  "msg/CustomPricing.msg"
 )
 
 set(srv_files

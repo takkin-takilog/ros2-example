@@ -1,4 +1,4 @@
-# Ask/Bid Pricing
+# Customized Pricing
 
 # Ask pricing
 float32 ask
