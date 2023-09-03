@@ -19,6 +19,10 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
+            "simple_timer = ros2_example.timer.simple_timer:main",
+            "dual_timer = ros2_example.timer.dual_timer:main",
+            "timer_wrrd = ros2_example.timer.timer_wrrd:main",
+            "timer_wrrd_mt = ros2_example.timer.timer_wrrd_mt:main",
             "simple_pricing_publisher = ros2_example.topics.simple_pricing_publisher:main",
             "simple_pricing_subscriber = ros2_example.topics.simple_pricing_subscriber:main",
             "custom_pricing_publisher = ros2_example.topics.custom_pricing_publisher:main",
