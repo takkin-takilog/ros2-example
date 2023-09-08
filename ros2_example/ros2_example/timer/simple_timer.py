@@ -15,7 +15,7 @@ class SimpleTimer(Node):
         """
         super().__init__("simple_timer")
 
-        # 1.0秒周期で実行されるタイマーの定義
+        # 1.0秒周期で実行されるROSタイマーの定義
         # （timer_callbackは1.0秒経過する度に呼び出されるコールバック関数）
         self.timer = self.create_timer(1.0, self._timer_callback)
 
@@ -30,7 +30,7 @@ class SimpleTimer(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    # Pythonクライアントライブラリの初期化
+    # ROSの初期化
     rclpy.init(args=args)
     # simple_timerノードの作成
     st = SimpleTimer()
@@ -42,7 +42,7 @@ def main(args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
     else:
-        # Pythonクライアントライブラリの終了
+        # ROSのシャットダウン
         rclpy.shutdown()
     finally:
         # ノードの破棄

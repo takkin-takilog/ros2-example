@@ -35,7 +35,7 @@ class SimplePricingSubscriber(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    # Pythonクライアントライブラリの初期化
+    # ROSの初期化
     rclpy.init(args=args)
     # simple_pricing_subscriberノードの作成
     sps = SimplePricingSubscriber()
@@ -47,7 +47,7 @@ def main(args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
     else:
-        # Pythonクライアントライブラリの終了
+        # ROSのシャットダウン
         rclpy.shutdown()
     finally:
         # ノードの破棄

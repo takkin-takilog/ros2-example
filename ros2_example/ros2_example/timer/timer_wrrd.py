@@ -16,14 +16,14 @@ class TimerWrRd(Node):
         """
         super().__init__("timer_wrrd")
 
-        # 5.0秒周期でcounter1,2,3を書き込むタイマーの定義
+        # 5.0秒周期でcounter1,2,3を書き込むROSタイマーの定義
         # （timer_wr_callbackは5.0秒経過する度に呼び出されるコールバック関数）
         self.timer_wr = self.create_timer(5.0, self._timer_wr_callback)
 
         # 読み出しタイマーを書き込みタイマーより0.5秒遅らせて実行させる
         time.sleep(0.5)  # 0.5秒停止
 
-        # 5.0秒周期でcounter1,2,3を読み出すタイマーの定義
+        # 5.0秒周期でcounter1,2,3を読み出すROSタイマーの定義
         # （timer_rd_callbackは5.0秒経過する度に呼び出されるコールバック関数）
         self.timer_rd = self.create_timer(5.0, self._timer_rd_callback)
 
@@ -73,7 +73,7 @@ class TimerWrRd(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    # Pythonクライアントライブラリの初期化
+    # ROSの初期化
     rclpy.init(args=args)
     # timer_wrrdノードの作成
     twr = TimerWrRd()
@@ -85,7 +85,7 @@ def main(args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
     else:
-        # Pythonクライアントライブラリの終了
+        # ROSのシャットダウン
         rclpy.shutdown()
     finally:
         # ノードの破棄

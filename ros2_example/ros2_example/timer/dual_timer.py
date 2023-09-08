@@ -15,11 +15,11 @@ class DualTimer(Node):
         """
         super().__init__("dual_timer")
 
-        # 1.0秒周期で実行されるタイマー①の定義
+        # 1.0秒周期で実行されるROSタイマー①の定義
         # （timer1_callbackは1.0秒経過する度に呼び出されるコールバック関数）
         self.timer1 = self.create_timer(1.0, self._timer1_callback)
 
-        # 3.0秒周期で実行されるタイマー②の定義
+        # 3.0秒周期で実行されるROSタイマー②の定義
         # （timer2_callbackは3.0秒経過する度に呼び出されるコールバック関数）
         self.timer2 = self.create_timer(3.0, self._timer2_callback)
 
@@ -43,7 +43,7 @@ class DualTimer(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    # Pythonクライアントライブラリの初期化
+    # ROSの初期化
     rclpy.init(args=args)
     # dual_timerノードの作成
     dt = DualTimer()
@@ -55,7 +55,7 @@ def main(args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, ExternalShutdownException):
         pass
     else:
-        # Pythonクライアントライブラリの終了
+        # ROSのシャットダウン
         rclpy.shutdown()
     finally:
         # ノードの破棄
