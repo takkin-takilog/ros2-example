@@ -15,6 +15,9 @@ class DualTimer(Node):
         """
         super().__init__("dual_timer")
 
+        # ロガー取得
+        self.logger = self.get_logger()
+
         # 1.0秒周期で実行されるROSタイマー①の定義
         # （timer1_callbackは1.0秒経過する度に呼び出されるコールバック関数）
         self.timer1 = self.create_timer(1.0, self._timer1_callback)
@@ -30,7 +33,7 @@ class DualTimer(Node):
         # 現在時刻を取得
         now = datetime.datetime.now()
         # 現在時刻をログ出力
-        self.get_logger().info("＜タイマー１＞現在時刻:{}".format(now))
+        self.logger.info("＜タイマー１＞現在時刻:{}".format(now))
 
     def _timer2_callback(self) -> None:
         """
@@ -39,7 +42,7 @@ class DualTimer(Node):
         # 現在時刻を取得
         now = datetime.datetime.now()
         # 現在時刻をログ出力
-        self.get_logger().info("＜タイマー２＞現在時刻:{}".format(now))
+        self.logger.info("＜タイマー２＞現在時刻:{}".format(now))
 
 
 def main(args: list[str] | None = None) -> None:

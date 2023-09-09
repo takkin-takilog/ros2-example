@@ -15,6 +15,9 @@ class SimpleTimer(Node):
         """
         super().__init__("simple_timer")
 
+        # ロガー取得
+        self.logger = self.get_logger()
+
         # 1.0秒周期で実行されるROSタイマーの定義
         # （timer_callbackは1.0秒経過する度に呼び出されるコールバック関数）
         self.timer = self.create_timer(1.0, self._timer_callback)
@@ -26,7 +29,7 @@ class SimpleTimer(Node):
         # 現在時刻を取得
         now = datetime.datetime.now()
         # 現在時刻をログ出力
-        self.get_logger().info("現在時刻:{}".format(now))
+        self.logger.info("現在時刻:{}".format(now))
 
 
 def main(args: list[str] | None = None) -> None:
