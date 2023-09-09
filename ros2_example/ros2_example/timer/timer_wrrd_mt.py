@@ -2,7 +2,7 @@ import rclpy
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
-from rclpy.callback_groups import ReentrantCallbackGroup
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 import datetime
 import time
 
@@ -20,21 +20,23 @@ class TimerWrRd(Node):
         """
         super().__init__("timer_wrrd")
 
-        # 再入可能コールバックGroupを生成
-        cb_grp = ReentrantCallbackGroup()
+        # 書き込み用コールバックGroupを生成
+        cb_grp_wr = MutuallyExclusiveCallbackGroup()
+        # 読み出し用コールバックGroupを生成
+        cb_grp_rd = MutuallyExclusiveCallbackGroup()
 
         # 5.0秒周期でcounter1,2,3を書き込むROSタイマーの定義
         # （timer_wr_callbackは5.0秒経過する度に呼び出されるコールバック関数）
-        # ※コールバック関数は再入可能に設定
-        self.timer_wr = self.create_timer(5.0, self._timer_wr_callback, cb_grp)
+        # 書き込み用コールバックGroupを設定
+        self.timer_wr = self.create_timer(5.0, self._timer_wr_callback, cb_grp_wr)
 
         # 読み出しタイマーを書き込みタイマーより0.5秒遅らせて実行させる
         time.sleep(0.5)  # 0.5秒停止
 
         # 5.0秒周期でcounter1,2,3を読み出すROSタイマーの定義
         # （timer_rd_callbackは5.0秒経過する度に呼び出されるコールバック関数）
-        # ※コールバック関数は再入可能に設定
-        self.timer_rd = self.create_timer(5.0, self._timer_rd_callback, cb_grp)
+        # 読み出し用コールバックGroupを設定
+        self.timer_rd = self.create_timer(5.0, self._timer_rd_callback, cb_grp_rd)
 
         # counter1,2,3のインスタンス変数を定義
         self._counter1 = 0
