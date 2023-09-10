@@ -56,6 +56,7 @@ class TimerWrRd(Node):
 
         self._counter3 += 1  # カウンター３を+1
         self.logger.info("[{}]Wirte counter3:[{}]".format(elps, self._counter3))
+        time.sleep(1)  # １秒停止
 
         # 終了経過時間を取得
         elps = datetime.datetime.now() - self._start_time
