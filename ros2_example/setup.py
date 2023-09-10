@@ -19,6 +19,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
+            "cup_noodle = ros2_example.timer.cup_noodle:main",
             "simple_timer = ros2_example.timer.simple_timer:main",
             "dual_timer = ros2_example.timer.dual_timer:main",
             "timer_wrrd = ros2_example.timer.timer_wrrd:main",
