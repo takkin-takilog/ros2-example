@@ -28,7 +28,7 @@ class CustomPricingPublisher(Node):
         # 独自型のcustom_pricingトピックを送信するpublisherの定義
         self.pub = self.create_publisher(CustomPricing, "custom_pricing", qos_profile)
 
-        # 送信周期毎にtimer_callbackを呼び出し（送信周期は0.1秒）
+        # 送信周期毎にtimer_callbackを呼び出し（送信周期は0.5秒）
         self.timer = self.create_timer(0.5, self.timer_callback)
 
         self._start_time = time.time()
