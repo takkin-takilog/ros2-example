@@ -19,15 +19,23 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
+            # Timer
             "cup_noodle = ros2_example.timer.cup_noodle:main",
             "simple_timer = ros2_example.timer.simple_timer:main",
             "dual_timer = ros2_example.timer.dual_timer:main",
             "timer_wrrd = ros2_example.timer.timer_wrrd:main",
             "timer_wrrd_mt = ros2_example.timer.timer_wrrd_mt:main",
+            # Topic
             "simple_pricing_publisher = ros2_example.topics.simple_pricing_publisher:main",
             "simple_pricing_subscriber = ros2_example.topics.simple_pricing_subscriber:main",
             "custom_pricing_publisher = ros2_example.topics.custom_pricing_publisher:main",
             "custom_pricing_subscriber = ros2_example.topics.custom_pricing_subscriber:main",
+            # Service
+            "circle_server = ros2_example.service.circle_server:main",
+            "circle_client = ros2_example.service.circle_client:main",
+            "price_server = ros2_example.service.price_server:main",
+            "price_client_async = ros2_example.service.price_client_async:main",
+            "price_client_async_callback = ros2_example.service.price_client_async_callback:main",
         ],
     },
 )

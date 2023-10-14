@@ -33,6 +33,8 @@ set(msg_files
 
 set(srv_files
   # "srv/***.srv"
+  "srv/Circle.srv"
+  "srv/PriceQuery.srv"
 )
 
 set(act_files
