@@ -36,6 +36,9 @@ setup(
             "price_server = ros2_example.service.price_server:main",
             "price_client_async = ros2_example.service.price_client_async:main",
             "price_client_async_callback = ros2_example.service.price_client_async_callback:main",
+            # Action
+            "sma_server = ros2_example.action.sma_server:main",
+            "sma_client_async = ros2_example.action.sma_client_async:main",
         ],
     },
 )

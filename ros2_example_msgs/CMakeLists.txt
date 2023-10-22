@@ -39,6 +39,7 @@ set(srv_files
 
 set(act_files
   # "action/***.action"
+  "action/SimpleMovingAverage.action"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
