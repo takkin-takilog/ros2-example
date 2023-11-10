@@ -50,13 +50,6 @@ class SimpleMovingAverageServer(Node):
 
         # リスト位置 goal.window-1 以降で計算
         for i in range(goal.window, price_len + 1):
-            # キャンセル要求があった場合
-            if goal_handle.is_cancel_requested:
-                # アクションステータスに"キャンセル"をセット
-                goal_handle.canceled()
-                self.get_logger().info("Goalキャンセル完了")
-                return SimpleMovingAverage.Result()
-
             # 移動平均の計算
             price_sum = 0.0
             for j in range(i - goal.window, i):
