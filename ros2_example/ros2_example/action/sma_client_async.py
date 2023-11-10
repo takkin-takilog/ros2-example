@@ -51,7 +51,7 @@ class SimpleMovingAverageClient(Node):
         self._goal_future = self.act_cli.send_goal_async(
             goal_msg, self._feedback_callback
         )
-        self._goal_future.add_done_callback(self.goal_response_callback)
+        self._goal_future.add_done_callback(self._goal_response_callback)
 
         self._price_raw_list = price_raw_list
         self._window = window
@@ -62,7 +62,7 @@ class SimpleMovingAverageClient(Node):
         """
         self.logger.info("フィードバック受信：進捗{}%".format(feedback.feedback.progress))
 
-    def goal_response_callback(self, future) -> None:
+    def _goal_response_callback(self, future) -> None:
         """
         アクション・Goal応答コールバック
         """
@@ -74,9 +74,9 @@ class SimpleMovingAverageClient(Node):
         self.logger.info("　Goal受理されました。")
 
         self._result_future = goal_handle.get_result_async()
-        self._result_future.add_done_callback(self.get_result_callback)
+        self._result_future.add_done_callback(self._get_result_callback)
 
-    def get_result_callback(self, future) -> None:
+    def _get_result_callback(self, future) -> None:
         """
         アクション・Result応答コールバック
         """
