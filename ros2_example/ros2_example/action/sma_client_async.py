@@ -84,19 +84,19 @@ class SimpleMovingAverageClient(Node):
         status = future.result().status
         if status == GoalStatus.STATUS_SUCCEEDED:
             self.logger.info("Goal成功")
+
+            # ********** 描写 **********
+            label_sma = "SMA(window:" + str(self._window) + ")"
+            plt.plot(self._price_raw_list, label="Raw value")
+            plt.scatter(range(len(self._price_raw_list)), self._price_raw_list)
+            plt.plot(result.price_sma_list, label=label_sma)
+            plt.scatter(range(len(result.price_sma_list)), result.price_sma_list)
+            plt.legend()
+            plt.title("Simple Moving Average(SMA)")
+            plt.grid(linestyle="dashed")
+            plt.show()
         else:
             self.logger.info("Goal失敗 (status: {})".format(status))
-
-        # ********** 描写 **********
-        label_sma = "SMA(window:" + str(self._window) + ")"
-        plt.plot(self._price_raw_list, label="Raw value")
-        plt.scatter(range(len(self._price_raw_list)), self._price_raw_list)
-        plt.plot(result.price_sma_list, label=label_sma)
-        plt.scatter(range(len(result.price_sma_list)), result.price_sma_list)
-        plt.legend()
-        plt.title("Simple Moving Average(SMA)")
-        plt.grid(linestyle="dashed")
-        plt.show()
 
         # Shutdown after receiving a result
         raise ExternalShutdownException
