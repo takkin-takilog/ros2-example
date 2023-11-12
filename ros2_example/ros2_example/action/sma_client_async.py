@@ -25,7 +25,7 @@ class SimpleMovingAverageClient(Node):
         # smaアクションclientの定義
         self.act_cli = ActionClient(self, SimpleMovingAverage, "sma")
 
-        # サービスServerが有効になるまで待機
+        # アクションServerが有効になるまで待機
         while not self.act_cli.wait_for_server(timeout_sec=1.0):
             self.logger.info("アクションServerが有効になるまで待機中・・・")
 
