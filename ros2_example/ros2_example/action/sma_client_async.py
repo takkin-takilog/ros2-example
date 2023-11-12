@@ -47,7 +47,7 @@ class SimpleMovingAverageClient(Node):
             goal_msg.price_raw_list.append(price_raw)
 
         # アクションの非同期実行
-        self.logger.info("アクション：Goal送信")
+        self.logger.info("＜アクション：Goal送信＞")
         self._goal_future = self.act_cli.send_goal_async(
             goal_msg, self._feedback_callback
         )
@@ -69,10 +69,10 @@ class SimpleMovingAverageClient(Node):
         goal_handle = future.result()
         if not goal_handle.accepted:
             self.logger.info("　Goal拒否されました。")
-            return
+            # Shutdown after receiving a result
+            raise ExternalShutdownException
 
         self.logger.info("　Goal受理されました。")
-
         self._result_future = goal_handle.get_result_async()
         self._result_future.add_done_callback(self._get_result_callback)
 
@@ -128,9 +128,11 @@ def main(args: list[str] | None = None) -> None:
         125.0,
     ]
 
+    # 区切り範囲をキーボード入力
+    window = int(input("windows size: "))
+
     # アクション・ゴールの送信（非同期）
-    #   windows size: 3
-    mac.send_action_goal_async(3, price_raw_list)
+    mac.send_action_goal_async(window, price_raw_list)
 
     try:
         # ノードの実行開始

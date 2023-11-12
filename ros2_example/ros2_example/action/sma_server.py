@@ -4,6 +4,7 @@ import rclpy
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from rclpy.action import ActionServer
+from rclpy.action import GoalResponse
 from ros2_example_msgs.action import SimpleMovingAverage
 
 
@@ -23,8 +24,33 @@ class SimpleMovingAverageServer(Node):
 
         # smaアクションserverの定義
         self.act_srv = ActionServer(
-            self, SimpleMovingAverage, "sma", self._execute_callback
+            self,
+            SimpleMovingAverage,
+            "sma",
+            self._execute_callback,
+            goal_callback=self._goal_callback,
         )
+
+    def _goal_callback(self, goal_request) -> GoalResponse:
+        """
+        アクション・Goal要求コールバック
+        """
+        self.logger.info("＜アクション：Goal受信＞")
+        self.logger.info("　区切り範囲(window):[{}]".format(goal_request.window))
+        self.logger.info("　データ長:[{}]".format(len(goal_request.price_raw_list)))
+
+        if goal_request.window < 1:
+            self.logger.warn("　Goal Request: REJECT")
+            self.logger.warn("　　区切り範囲(window)が0以下です。")
+            return GoalResponse.REJECT
+
+        if len(goal_request.price_raw_list) < goal_request.window:
+            self.logger.warn("　Goal Request: REJECT")
+            self.logger.warn("　　データ長が区切り範囲(window)より小さいです。")
+            return GoalResponse.REJECT
+
+        self.logger.info("　Goal Request: ACCEPT")
+        return GoalResponse.ACCEPT
 
     def _execute_callback(self, goal_handle):
         """
