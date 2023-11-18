@@ -31,14 +31,14 @@ setup(
             "custom_pricing_publisher = ros2_example.topics.custom_pricing_publisher:main",
             "custom_pricing_subscriber = ros2_example.topics.custom_pricing_subscriber:main",
             # Service
-            "circle_server = ros2_example.service.circle_server:main",
-            "circle_client = ros2_example.service.circle_client:main",
-            "price_server = ros2_example.service.price_server:main",
-            "price_client_async = ros2_example.service.price_client_async:main",
-            "price_client_async_callback = ros2_example.service.price_client_async_callback:main",
+            "circle_server = ros2_example.services.circle_server:main",
+            "circle_client = ros2_example.services.circle_client:main",
+            "price_server = ros2_example.services.price_server:main",
+            "price_client_async = ros2_example.services.price_client_async:main",
+            "price_client_async_callback = ros2_example.services.price_client_async_callback:main",
             # Action
-            "sma_server = ros2_example.action.sma_server:main",
-            "sma_client_async = ros2_example.action.sma_client_async:main",
+            "sma_server = ros2_example.actions.sma_server:main",
+            "sma_client_async = ros2_example.actions.sma_client_async:main",
         ],
     },
 )
