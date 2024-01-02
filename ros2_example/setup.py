@@ -40,7 +40,7 @@ setup(
             "sma_server = ros2_example.actions.sma_server:main",
             "sma_client_async = ros2_example.actions.sma_client_async:main",
             # Parameter
-            "sma_parameter = ros2_example.params.sma_parameter:main",
+            "bb_param = ros2_example.params.bb_parameter:main",
         ],
     },
 )
