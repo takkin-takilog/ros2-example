@@ -1,0 +1,10 @@
+/name_space_1/bb_param:
+  ros__parameters:
+    sma: 9
+    sigma: 1.9
+
+/name_space_2/bb_param:
+  ros__parameters:
+    sma: 90
+    sigma: 2.9
+
