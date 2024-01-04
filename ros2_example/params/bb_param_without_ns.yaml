@@ -1,0 +1,10 @@
+/bb_param_1:
+  ros__parameters:
+    sma: 5
+    sigma: 1.0
+
+/bb_param_2:
+  ros__parameters:
+    sma: 10
+    sigma: 2.0
+
