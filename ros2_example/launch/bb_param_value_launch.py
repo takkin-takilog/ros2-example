@@ -9,7 +9,7 @@ def generate_launch_description() -> LaunchDescription:
         executable="bb_param",
         name="bb_param",
         namespace="name_space_1",
-        parameters=[{"sma": 7, "sigma": 1.2}],
+        parameters=[{"sma": 5, "sigma": 1.0}],
         output="screen",
     )
     node_act2 = Node(
@@ -17,7 +17,7 @@ def generate_launch_description() -> LaunchDescription:
         executable="bb_param",
         name="bb_param",
         namespace="name_space_2",
-        parameters=[{"sma": 12, "sigma": 2.2}],
+        parameters=[{"sma": 10, "sigma": 2.0}],
         output="screen",
     )
 
