@@ -5,9 +5,6 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description() -> LaunchDescription:
-    # Directory name
-    PARAM_DIR = "params"
-
     # YAML file
     BB_PARAM_YAML = "bb_param_without_ns.yaml"
 
@@ -15,7 +12,7 @@ def generate_launch_description() -> LaunchDescription:
     package_dir = get_package_share_directory("ros2_example")
 
     # Get the YAML file full path
-    yaml_file = os.path.join(package_dir, PARAM_DIR, BB_PARAM_YAML)
+    yaml_file = os.path.join(package_dir, "params", BB_PARAM_YAML)
 
     # Create the node action
     node_act1 = Node(
