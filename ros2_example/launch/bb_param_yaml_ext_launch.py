@@ -20,9 +20,9 @@ def generate_launch_description() -> LaunchDescription:
     lc_bb_param_yaml = LaunchConfiguration(VN_BB_PARAM)
 
     # Declare the launch arguments
-    #   ※"default_value"を設定した場合、外部から呼び出されたときに引数が定義されていないと
+    #   ※"default_value"を設定した場合、外部から呼び出されたときに引数が指定されていないと
     #   　"default_value"の値が初期値として設定される
-    #   ※"default_value"を設定しない場合、外部から呼び出されたときに引数が定義されていないと
+    #   ※"default_value"を設定しない場合、外部から呼び出されたときに引数が指定されていないと
     #   　エラーとなり、処理を停止する。
     declare_bb_params_cmd = DeclareLaunchArgument(
         VN_BB_PARAM,

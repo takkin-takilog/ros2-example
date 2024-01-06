@@ -18,9 +18,9 @@ def generate_launch_description() -> LaunchDescription:
     lc_ns2sigma = LaunchConfiguration(VN_NS2_SIGMA)
 
     # Declare the launch arguments
-    #   ※"default_value"を設定した場合、外部から呼び出されたときに引数が定義されていないと
+    #   ※"default_value"を設定した場合、外部から呼び出されたときに引数が指定されていないと
     #   　"default_value"の値が初期値として設定される
-    #   ※"default_value"を設定しない場合、外部から呼び出されたときに引数が定義されていないと
+    #   ※"default_value"を設定しない場合、外部から呼び出されたときに引数が指定されていないと
     #   　エラーとなり、処理を停止する。
     declare_ns1sma_cmd = DeclareLaunchArgument(
         VN_NS1_SMA,
