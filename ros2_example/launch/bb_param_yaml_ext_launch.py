@@ -34,7 +34,7 @@ def generate_launch_description() -> LaunchDescription:
     node_act1 = Node(
         package="ros2_example",
         executable="bb_param",
-        name="bb_param",
+        name=None,
         namespace="name_space_1",
         parameters=[lc_bb_param_yaml],
         output="screen",
@@ -42,7 +42,7 @@ def generate_launch_description() -> LaunchDescription:
     node_act2 = Node(
         package="ros2_example",
         executable="bb_param",
-        name="bb_param",
+        name=None,
         namespace="name_space_2",
         parameters=[lc_bb_param_yaml],
         output="screen",
