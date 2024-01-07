@@ -3,7 +3,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description() -> LaunchDescription:
-    # Create the node action
+    # ノード・アクションの定義
     node_act1 = Node(
         package="ros2_example",
         executable="bb_param",
@@ -21,10 +21,10 @@ def generate_launch_description() -> LaunchDescription:
         output="screen",
     )
 
-    # Create the launch description and populate
+    # LaunchDescriptionオブジェクトの生成
     ld = LaunchDescription()
 
-    # Add the actions to launch all of the nodes
+    # ノード・アクションの追加
     ld.add_action(node_act1)
     ld.add_action(node_act2)
 

@@ -7,19 +7,19 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description() -> LaunchDescription:
-    # YAML file
+    # 読み込ませるYAMLファイル名の定義
     BB_PARAM_YAML = "bb_param.yaml"
 
-    # Launch configuration variable names
+    # Launch引数名の定義
     VN_BB_PARAM = "bb_param"
 
-    # Get the package directory
+    # パッケージ・ディレクトリの取得
     package_dir = get_package_share_directory("ros2_example")
 
-    # Create the launch configuration variables
+    # Launch引数の値を受け取るための変数定義
     lc_bb_param_yaml = LaunchConfiguration(VN_BB_PARAM)
 
-    # Declare the launch arguments
+    # Launch引数の宣言
     #   ※"default_value"を設定した場合、外部から呼び出されたときに引数が指定されていないと
     #   　"default_value"の値が初期値として設定される
     #   ※"default_value"を設定しない場合、外部から呼び出されたときに引数が指定されていないと
@@ -30,7 +30,7 @@ def generate_launch_description() -> LaunchDescription:
         description="Full path to the ROS2 parameters file to use for the launched node",
     )
 
-    # Create the node action
+    # ノード・アクションの定義
     node_act1 = Node(
         package="ros2_example",
         executable="bb_param",
@@ -48,13 +48,13 @@ def generate_launch_description() -> LaunchDescription:
         output="screen",
     )
 
-    # Create the launch description and populate
+    # LaunchDescriptionオブジェクトの生成
     ld = LaunchDescription()
 
-    # Declare the launch options
+    # Launch引数アクションの追加
     ld.add_action(declare_bb_params_cmd)
 
-    # Add the actions to launch all of the nodes
+    # ノード・アクションの追加
     ld.add_action(node_act1)
     ld.add_action(node_act2)
 
